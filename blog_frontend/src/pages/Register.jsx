@@ -29,6 +29,7 @@ const Login = () => {
           password,
         }
       );
+      console.log(response);
       setPasswordError("");
       if(password!== cpassword){
         setCpassword("Passwords don't match!")
