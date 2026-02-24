@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.post(
+        await axios.post(
         "http://localhost:4000/api/user/register",
         {
             name,
