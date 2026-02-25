@@ -6,10 +6,23 @@ const cors = require('cors')
 
 app.use(express.json());
 
+// CORS configuration for production
+const allowedOrigins = [
+    'http://localhost:3000',
+    process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-    origin:'http://localhost:3000',
-    credentials:true
-}))
+    origin: function(origin, callback) {
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) === -1) {
+            return callback(new Error('CORS not allowed'), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true
+}));
 
 const authRoutes = require('./src/routes/auth');
 const loginRoutes = require('./src/routes/login');
