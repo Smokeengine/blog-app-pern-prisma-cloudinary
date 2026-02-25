@@ -4,7 +4,6 @@ const app = express()
 const port = process.env.PORT || 4000
 const cors = require('cors')
 
-app.use(express.json());
 
 app.use(cors({
     origin: [
@@ -14,6 +13,8 @@ app.use(cors({
     ].filter(Boolean),
     credentials: true
 }));
+
+app.use(express.json());
 
 const authRoutes = require('./src/routes/auth');
 const loginRoutes = require('./src/routes/login');
