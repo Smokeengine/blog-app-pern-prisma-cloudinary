@@ -6,21 +6,12 @@ const cors = require('cors')
 
 app.use(express.json());
 
-// CORS configuration for production
-const allowedOrigins = [
-    'http://localhost:3000',
-    process.env.FRONTEND_URL
-].filter(Boolean);
-
 app.use(cors({
-    origin: function(origin, callback) {
-        if (!origin) return callback(null, true);
-        
-        if (allowedOrigins.indexOf(origin) === -1) {
-            return callback(new Error('CORS not allowed'), false);
-        }
-        return callback(null, true);
-    },
+    origin: [
+        'http://localhost:3000',
+        'https://blog-app-pern-prisma-cloudinary-5pu5g3e94.vercel.app',
+        process.env.FRONTEND_URL
+    ].filter(Boolean),
     credentials: true
 }));
 
