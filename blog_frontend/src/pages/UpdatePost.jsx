@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { API_URL } from '../config/api';
 
 
 const UpdatePost = () => {
@@ -23,7 +24,7 @@ const UpdatePost = () => {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:4000/api/posts/${id}`);
+        const response = await axios.get(`${API_URL}/api/posts/${id}`);
         const postData = response.data.post;
         
         setPost(postData);
@@ -46,7 +47,7 @@ const UpdatePost = () => {
   const UploadImage = async (imagedata) => {
     try {
       const response = await axios.post(
-        'http://localhost:4000/api/upload',
+        `${API_URL}/api/upload`,
         { image: imagedata },
         {
           headers: {
@@ -114,7 +115,7 @@ const UpdatePost = () => {
       
       // Update post
       const response = await axios.put(  
-        `http://localhost:4000/api/posts/${id}`,
+        `${API_URL}/api/posts/${id}`,
         {
           title,
           content,

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { IoMdEyeOff } from "react-icons/io";
 import { FaEye } from "react-icons/fa";
+import { API_URL } from "../config/api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,13 +23,14 @@ const Login = () => {
     try {
       setLoading(true);
         await axios.post(
-        "http://localhost:4000/api/user/register",
+        `${API_URL}/api/user/register`,
         {
             name,
           email,
           password,
         }
       );
+
       setPasswordError("");
       if(password!== cpassword){
         setCpassword("Passwords don't match!")

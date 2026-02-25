@@ -5,6 +5,7 @@ import { IoMdMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config/api";
 
 const SinglePost = () => {
   const navigate = useNavigate();
@@ -30,11 +31,11 @@ const SinglePost = () => {
         setError("");
         
         // Fetch post
-        const postResponse = await axios.get(`http://localhost:4000/api/posts/${id}`);
+        const postResponse = await axios.get(`${API_URL}/api/posts/${id}`);
         setPost(postResponse.data.post);
         
         // Fetch comments
-        const commentsResponse = await axios.get(`http://localhost:4000/api/posts/${id}/comments`);
+        const commentsResponse = await axios.get(`${API_URL}/api/posts/${id}/comments`);
         console.log('Comments response:', commentsResponse.data);
         
         // Handle different response formats
@@ -69,7 +70,7 @@ const SinglePost = () => {
       setSubmitting(true);
       
       const response = await axios.post(
-        `http://localhost:4000/api/posts/${id}/comments`,  // ✅ Fixed URL
+        `${API_URL}/api/posts/${id}/comments`,  // ✅ Fixed URL
         { content: comment },
         {
           headers: {
@@ -100,7 +101,7 @@ const SinglePost = () => {
     }
     try {
       setDeleteId(commentId);
-      const response = await axios.delete(`http://localhost:4000/api/comments/${commentId}`, {
+      const response = await axios.delete(`${API_URL}/api/comments/${commentId}`, {
         headers: {
           Authorization : `Bearer ${token}`
         }
@@ -158,7 +159,7 @@ const SinglePost = () => {
         return;
       }
       setdeleting(true)
-      await axios.delete(`http://localhost:4000/api/posts/${id}`,
+      await axios.delete(`${API_URL}/api/posts/${id}`,
         {headers:{
           Authorization: `Bearer ${token}`
         }})

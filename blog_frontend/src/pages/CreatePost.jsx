@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
 import axios from 'axios';
+import { API_URL } from '../config/api';
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const CreatePost = () => {
   };
 
   const uploadImage = async (imageData) => {
-    const response = await axios.post('http://localhost:4000/api/upload', {
+    const response = await axios.post(`${API_URL}/api/upload`, {
       image: imageData
     }, {
       headers: {
@@ -73,7 +74,7 @@ const CreatePost = () => {
       }
       
       // Create post
-      const result = await axios.post('http://localhost:4000/api/posts', {
+      const result = await axios.post(`${API_URL}/api/posts`, {
         title,
         content,
         image: imageUrl
