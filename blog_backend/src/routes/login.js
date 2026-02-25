@@ -30,7 +30,7 @@ router.post('/user/login', async (req,res)=>{
             
                 userid: user_data.id,
                 email: user_data.email 
-            }, process.env.SECRET_KEY , {expiresIn : '1h'}
+            }, process.env.JWT_SECRET , {expiresIn : '1h'}
         );
         res.json({
             message: "Login successful",
