@@ -97,7 +97,7 @@ router.get('/posts/:id', async (req, res) => {
 router.put('/posts/:id', authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;  
-    const { title, content } = req.body;  // From body
+    const { title, content, image } = req.body;  // From body
     
     // Find the post
     const post = await prisma.post.findUnique({
@@ -123,7 +123,8 @@ router.put('/posts/:id', authMiddleware, async (req, res) => {
       where: { id: parseInt(id) },
       data: {
         title,
-        content
+        content,
+        image
       }
     });
     
