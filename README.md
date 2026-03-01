@@ -2,6 +2,9 @@
 
 A full-stack blogging platform built with PostgreSQL, Express, React, and Node.js (PERN stack), featuring user authentication, post management, comments, and image uploads via Cloudinary.
 
+🌐 Live Demo
+https://blog-app-pern-prisma-cloudinary.vercel.app
+
 ## 🚀 Features
 
 - **User Authentication** - Secure registration and login with JWT tokens and bcrypt password hashing
