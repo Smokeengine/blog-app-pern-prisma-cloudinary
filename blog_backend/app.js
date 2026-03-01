@@ -8,11 +8,16 @@ const cors = require('cors')
 app.use(cors({
     origin: [
         'http://localhost:3000',
-        'https://blog-app-pern-prisma-cloudinary-5pu5g3e94.vercel.app',
+        'https://blog-app-pern-prisma-cloudinary.vercel.app',
+        'https://blog-app-pern-prisma-cloudinary-5pu5g3e94.vercel.app', 
         process.env.FRONTEND_URL
     ].filter(Boolean),
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+app.options('*', cors()); 
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
